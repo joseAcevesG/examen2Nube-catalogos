@@ -85,7 +85,7 @@ jobs:
             docker stop catalogos || true
             docker container rm -f catalogos || true
             docker run -d --name catalogos -p 8080:8080 \
-              -e SALES_PORT=${{ vars.SALES_PORT }} \
+              -e SALES_ENDPOINT=${{ secrets.EC2_HOST_DEV }}:${{ vars.SALES_PORT }} \
               -e MYSQL_HOST=${{ secrets.MYSQL_HOST }} \
               -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
               -e MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
