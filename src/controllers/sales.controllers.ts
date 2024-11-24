@@ -7,7 +7,7 @@ const ip = process.env.IP;
 class SalesController {
 	get(req: Request, res: Response) {
 		axios
-			.get(`http://localhost:${process.env.SALES_PORT}/sales/${req.params.id}`)
+			.get(`http://${process.env.SALES_ENDPOINT}/sales/${req.params.id}`)
 			.then((response) => {
 				res.status(response.status).send(response.data);
 			})
@@ -22,16 +22,10 @@ class SalesController {
 	}
 
 	create(req: Request, res: Response) {
-		console.log("Creating sale");
-		console.log(req.body);
-		console.log(req.headers);
-		console.log(req.method);
-		console.log(`http://localhost:${process.env.SALES_PORT}/sales`);
 		axios
-			.post(`http://localhost:${process.env.SALES_PORT}/sales`, req.body)
+			.post(`http://${process.env.SALES_ENDPOINT}/sales`, req.body)
 
 			.then((response) => {
-				console.log("Sale created");
 				res.status(response.status).send(response.data);
 			})
 			.catch((error) => {
@@ -46,9 +40,7 @@ class SalesController {
 
 	getPDF(req: Request, res: Response) {
 		axios
-			.get(
-				`http://localhost:${process.env.SALES_PORT}/sales/${req.params.id}/pdf`,
-			)
+			.get(`http://${process.env.SALES_ENDPOINT}/sales/${req.params.id}/pdf`)
 			.then((response) => {
 				res.status(response.status).send(response.data);
 			})

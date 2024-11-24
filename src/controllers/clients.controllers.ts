@@ -24,7 +24,7 @@ class ClientController {
 				res.json(client);
 			})
 			.catch((error) => {
-				console.log(error.message);
+				console.error(error.message);
 				if (error.message === "Cliente no encontrado") {
 					res.status(404).send(error.message);
 					return;
